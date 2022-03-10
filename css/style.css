@@ -7,8 +7,7 @@ body {
     grid-template-columns: repeat(6, 1fr);
     padding: 1rem 0;
     max-width: min(1050px, 90%);
-    max-height: 90%;
-    margin: auto auto;
+    margin: 0 auto;
 }
 @media (min-width: 480px) {
     .table {
