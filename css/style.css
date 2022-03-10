@@ -1,0 +1,11 @@
+body {
+    background-color: black;
+}
+table {
+    margin: 2rem auto;
+}
+td {
+    background-color: aqua;
+    padding: 1rem;
+    font-size: 1.8rem;
+}
