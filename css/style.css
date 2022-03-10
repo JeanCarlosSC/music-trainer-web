@@ -1,6 +1,7 @@
 body {
     background-color: black;
 }
+
 .table {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -24,6 +25,7 @@ body {
         grid-template-columns: repeat(15, 1fr);
     }
 }
+
 p {
     background-color: aqua;
     padding: 0.7rem;
