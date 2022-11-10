@@ -2,30 +2,11 @@ import './App.css';
 import SimpleBottomNavigation from './SimpleBottomNavigation';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-import React from 'react';
-import { setSourceMapRange } from 'typescript';
 
 function App() {
-	const [page, setPage] = useState(3);
+	const [page, setPage] = useState(0);
 
 	let button;
-	React.useEffect(() => {
-		switch (page) {
-			case 1: {
-				button = <Button variant="contained" onClick={dibujarAcordes}>Generar</Button>;
-				break;
-			}
-			case 2: {
-				button = <Button variant="contained" onClick={dibujarHojaRandom}>Generar</Button>;
-				break;
-			}
-			default: {
-				button = <Button variant="contained" onClick={dibujarModos}>Generar</Button>;
-				break;
-			}
-		}
-	}, [page, dibujarAcordes, dibujarHojaRandom, dibujarModos, button]);
-
 
 	function dibujarHojaRandom() {
 		setPage(0);
@@ -59,6 +40,33 @@ function App() {
 		}
 	}
 
+	function dibujarAcordes() {
+		setPage(1);
+		console.log("dibujando acordes");
+	
+		document.getElementById("table")!.innerHTML = '';
+	}
+	
+	function dibujarModos() {
+		setPage(2);
+		console.log("dibujando modos");
+	}
+	
+	switch (page) {
+		case 1: {
+			button = <Button variant="contained" onClick={dibujarAcordes}>Generar</Button>;
+			break;
+		}
+		case 2: {
+			button = <Button variant="contained" onClick={dibujarModos}>Generar</Button>;
+			break;
+		}
+		default: {
+			button = <Button variant="contained" onClick={dibujarHojaRandom}>Generar</Button>;
+			break;
+		}
+	}
+
 	return (
 		<div className="App">
 			<meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -70,16 +78,6 @@ function App() {
 			</div>
 		</div>
 	);
-}
-
-function dibujarAcordes() {
-	console.log("dibujando acordes");
-
-	document.getElementById("table")!.innerHTML = '';
-}
-
-function dibujarModos() {
-	console.log("dibujando modos");
 }
 
 export default App;
