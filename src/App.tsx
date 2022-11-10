@@ -42,16 +42,111 @@ function App() {
 
 	function dibujarAcordes() {
 		setPage(1);
-		console.log("dibujando acordes");
-	
+
 		document.getElementById("table")!.innerHTML = '';
+
+		let lastKey = "";
+		function getRandomKey(): string {
+			const notes = ["C", "D", "E", "F", "G", "A", "B"];
+			const randomNote = notes[Math.floor(Math.random() * notes.length)];
+
+			const alteraciones = ["", "#", "b"];
+			const randomAlteracion = alteraciones[Math.floor(Math.random() * alteraciones.length)];
+
+			const randomKey = randomNote + randomAlteracion;
+
+			// doesn't repeat consecutive key
+			if (lastKey === randomKey) {
+				return getRandomKey(); // pick another random key
+			}
+			lastKey = randomKey; // save key to avoid repetition
+
+			return randomKey;
+		}
+		let pKey = document.createElement("p");
+		pKey.textContent = getRandomKey();
+		document.getElementById("table")!.appendChild(pKey);
+
+		let lastDetail = "";
+		function getRandomDetail(): string {
+			const details = ["maj7", "7", "7(b5)", "7(#5)", "m7", "m7(b5)", "°7", "7sus", "6", "mMaj7"];
+			const randomDetail = details[Math.floor(Math.random() * details.length)];
+
+			// doesn't repeat consecutive key
+			if (lastDetail === randomDetail) {
+				return getRandomDetail(); // pick another random key
+			}
+			lastDetail = randomDetail; // save key to avoid repetition
+
+			return randomDetail;
+		}
+		let pDetail = document.createElement("p");
+		pDetail.textContent = getRandomDetail();
+		document.getElementById("table")!.appendChild(pDetail);
+
+		let lastInversion = "";
+		function getRandomInversion(): string {
+			const inversions = ["7", "6/5", "4/3", "2"];
+			const randomInversion = inversions[Math.floor(Math.random() * inversions.length)];
+
+			// doesn't repeat consecutive key
+			if (lastInversion === randomInversion) {
+				return getRandomInversion(); // pick another random key
+			}
+			lastInversion = randomInversion; // save key to avoid repetition
+
+			return randomInversion;
+		}
+		let pInversion = document.createElement("p");
+		pInversion.textContent = getRandomInversion();
+		document.getElementById("table")!.appendChild(pInversion);
 	}
-	
+
 	function dibujarModos() {
 		setPage(2);
-		console.log("dibujando modos");
+
+		document.getElementById("table")!.innerHTML = '';
+
+		let lastKey = "";
+		function getRandomKey(): string {
+			const notes = ["C", "D", "E", "F", "G", "A", "B"];
+			const randomNote = notes[Math.floor(Math.random() * notes.length)];
+
+			const alteraciones = ["", "#", "b"];
+			const randomAlteracion = alteraciones[Math.floor(Math.random() * alteraciones.length)];
+
+			const randomKey = randomNote + randomAlteracion;
+
+			// doesn't repeat consecutive key
+			if (lastKey === randomKey) {
+				return getRandomKey(); // pick another random key
+			}
+			lastKey = randomKey; // save key to avoid repetition
+
+			return randomKey;
+		}
+		let pKey = document.createElement("p");
+		pKey.textContent = getRandomKey();
+		document.getElementById("table")!.appendChild(pKey);
+
+		let lastMode = "";
+		function getRandomMode(): string {
+			const Modes = ["Jónico", "Dórico", "Frigio", "Lidio", "Eólico", "Mixolidio", "Locrio"];
+			const randomMode = Modes[Math.floor(Math.random() * Modes.length)];
+
+			// doesn't repeat consecutive key
+			if (lastMode === randomMode) {
+				return getRandomMode(); // pick another random key
+			}
+			lastMode = randomMode; // save key to avoid repetition
+
+			return randomMode;
+		}
+		let pMode = document.createElement("p");
+		pMode.textContent = getRandomMode();
+		document.getElementById("table")!.appendChild(pMode);
 	}
-	
+
 	switch (page) {
 		case 1: {
 			button = <Button variant="contained" onClick={dibujarAcordes}>Generar</Button>;
@@ -73,7 +168,9 @@ function App() {
 
 			<div className="contenido">
 				<SimpleBottomNavigation dibujarHojaRandom={dibujarHojaRandom} dibujarAcordes={dibujarAcordes} dibujarModos={dibujarModos} />
-				<div className="table" id="table"></div>
+				<div className="center">
+					<div className="table" id="table"></div>
+				</div>
 				{button}
 			</div>
 		</div>

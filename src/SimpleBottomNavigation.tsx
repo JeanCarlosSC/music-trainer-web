@@ -30,7 +30,7 @@ export default function SimpleBottomNavigation({ dibujarHojaRandom, dibujarAcord
 	}, [value, dibujarAcordes, dibujarHojaRandom, dibujarModos]);
 
 	return (
-		<div className="nav_container">
+		<div className="center">
 			<Box sx={{ width: 500 }}>
 				<BottomNavigation
 					showLabels

@@ -71,7 +71,7 @@ p {
 	font-size: 1rem;
 }
 
-.nav_container {
+.center {
 	display: flex;
 	justify-content: center;
 }
