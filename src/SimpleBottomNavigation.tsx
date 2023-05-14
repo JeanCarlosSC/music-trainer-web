@@ -7,9 +7,11 @@ interface NavigationProps {
 	dibujarHojaRandom: () => void;
 	dibujarAcordes: () => void;
 	dibujarModos: () => void;
+	dibujarIntervalos: () => void;
 }
 
-export default function SimpleBottomNavigation({ dibujarHojaRandom, dibujarAcordes, dibujarModos }: NavigationProps) {
+export default function SimpleBottomNavigation(
+	{ dibujarHojaRandom, dibujarAcordes, dibujarModos, dibujarIntervalos }: NavigationProps) {
 	const [value, setValue] = React.useState(0);
 
 	React.useEffect(() => {
@@ -22,12 +24,16 @@ export default function SimpleBottomNavigation({ dibujarHojaRandom, dibujarAcord
 				dibujarModos();
 				break;
 			}
+			case 3: {
+				dibujarIntervalos();
+				break;
+			}
 			default: {
 				dibujarHojaRandom();
 				break;
 			}
 		}
-	}, [value, dibujarAcordes, dibujarHojaRandom, dibujarModos]);
+	}, [value, dibujarAcordes, dibujarHojaRandom, dibujarModos, dibujarIntervalos]);
 
 	return (
 		<div className="center">
@@ -42,6 +48,7 @@ export default function SimpleBottomNavigation({ dibujarHojaRandom, dibujarAcord
 					<BottomNavigationAction label="Hoja random" />
 					<BottomNavigationAction label="Acordes" />
 					<BottomNavigationAction label="Modos" />
+					<BottomNavigationAction label="Intervalos y acordes" />
 				</BottomNavigation>
 			</Box>
 		</div>

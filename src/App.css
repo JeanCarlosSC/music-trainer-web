@@ -7,6 +7,10 @@
   pointer-events: none;
 }
 
+h1 {
+  font-size: medium;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -65,13 +69,30 @@
 }
 
 p {
-	background-color: aqua;
-	padding: 0.6rem;
-	margin: 1px;
 	font-size: 1rem;
 }
 
 .center {
 	display: flex;
 	justify-content: center;
+}
+
+#content {
+  margin: 1rem;
+}
+
+.square {
+  width: fit-content;
+	background-color: aqua;
+	padding: 0.6rem;
+	margin: 1px;
+}
+
+.output {
+  display: flex;
+  justify-content: center;
+}
+
+.full_width {
+  width:auto;
 }
