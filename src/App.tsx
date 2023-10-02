@@ -7,7 +7,7 @@ function App() {
 	const [page, setPage] = useState(0);
 
 	let button;
-	let lastRandomValue="";
+	let lastRandomValue = "";
 
 	const keys = ["Ab", "A", "Bb", "B", "Cb", "C", "C#", "Db", "D", "Eb", "E", "F", "F#", "Gb", "G"]
 	const notes = ["C", "D", "E", "F", "G", "A", "B"];
@@ -39,6 +39,39 @@ function App() {
 		return getRandomFrom(notes) + getRandomFrom(alteraciones);
 	}
 
+	function isValidInput(array: string[][], value: string, pos: number[]) {
+		for (let j = 0; j < 12; j++) {
+			if (array[pos[0]][j] === value) {
+				return false;
+			}
+		}
+		for (let i = 0; i < pos[0]; i++) {
+			if (array[i][pos[1]] === value) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// sort an array randomly
+	function shuffle(array: Array<string>) {
+		let currentIndex = array.length, randomIndex;
+
+		// While there remain elements to shuffle.
+		while (currentIndex > 0) {
+
+			// Pick a remaining element.
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
+
+			// And swap it with the current element.
+			[array[currentIndex], array[randomIndex]] = [
+				array[randomIndex], array[currentIndex]];
+		}
+
+		return array;
+	}
+
 	function dibujarHojaRandom() {
 		goToPage(0);
 
@@ -51,7 +84,7 @@ function App() {
 		pOutput1.appendChild(dTable);
 
 		// create i paragraphs in the table div
-		for (let i = 0; i < 150; i++) {
+		for (let i = 0; i < 144; i++) {
 			let paragraph = document.createElement("P");
 			paragraph.classList.add("square");
 			paragraph.classList.add("full_width");
@@ -59,8 +92,39 @@ function App() {
 		}
 
 		// updates each paragraph to a random key
+		const matrix: string[][] = []
+		
+		for (let i = 0; i < 12; i++) {
+			const keyLine = [
+				getRandomFrom(["C", "B#"]),
+				getRandomFrom(["C#", "Db"]),
+				"D",
+				getRandomFrom(["D#", "Eb"]),
+				getRandomFrom(["E", "Fb"]),
+				getRandomFrom(["F", "E#"]),
+				getRandomFrom(["F#", "Gb"]),
+				"G",
+				getRandomFrom(["G#", "Ab"]),
+				"A",
+				getRandomFrom(["A#", "Bb"]),
+				getRandomFrom(["B", "Cb"])
+			]
+			shuffle(keyLine)
+			matrix[i] = keyLine
+		}
+
+		// updates each paragraph to a matrix correspondient
 		let field = document.querySelectorAll('P');
-		field.forEach(element => element.textContent = getRandomFrom(keys));
+		let i = 0
+		let j = 0
+		field.forEach(element => {
+			element.textContent = matrix[i][j]
+			j++
+			if (j == 12) {
+				j = 0
+				i++
+			}
+		});
 	}
 
 	function dibujarAcordes() {
@@ -120,7 +184,7 @@ function App() {
 		pIntervalo.textContent = getRandomFrom(intervalos);
 		pIntervalo.classList.add("square");
 		pOutput1.appendChild(pIntervalo);
-		
+
 		let hAcordes = document.createElement("H1");
 		hAcordes.textContent = "Acordes";
 		document.querySelector("#content")!.appendChild(hAcordes);
@@ -133,7 +197,7 @@ function App() {
 		pTriada.textContent = getRandomFrom(triadas);
 		pTriada.classList.add("square");
 		pOutput2.appendChild(pTriada);
-		
+
 		let pInversion = document.createElement("P");
 		pInversion.textContent = getRandomFrom(inversiones);
 		pInversion.classList.add("square");
@@ -167,7 +231,7 @@ function App() {
 			<div className="contenido">
 				<SimpleBottomNavigation
 					dibujarHojaRandom={dibujarHojaRandom} dibujarAcordes={dibujarAcordes}
-					dibujarModos={dibujarModos} dibujarIntervalos={dibujarIntervalos}/>
+					dibujarModos={dibujarModos} dibujarIntervalos={dibujarIntervalos} />
 				<div id='content'></div>
 				{button}
 			</div>
