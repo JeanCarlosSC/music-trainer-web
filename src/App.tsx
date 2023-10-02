@@ -9,7 +9,7 @@ function App() {
 	let button;
 	let lastRandomValue = "";
 
-	const keys = ["Ab", "A", "Bb", "B", "Cb", "C", "C#", "Db", "D", "Eb", "E", "F", "F#", "Gb", "G"]
+	//const keys = ["Ab", "A", "Bb", "B", "Cb", "C", "C#", "Db", "D", "Eb", "E", "F", "F#", "Gb", "G"]
 	const notes = ["C", "D", "E", "F", "G", "A", "B"];
 	const alteraciones = ["", "#", "b"];
 	const details = ["maj7", "7", "7(b5)", "7(#5)", "m7", "m7(b5)", "°7", "7sus", "6", "mMaj7"];
