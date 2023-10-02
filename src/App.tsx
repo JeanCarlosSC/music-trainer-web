@@ -38,7 +38,7 @@ function App() {
 	function getRandomKey(): string {
 		return getRandomFrom(notes) + getRandomFrom(alteraciones);
 	}
-
+/*
 	function isValidInput(array: string[][], value: string, pos: number[]) {
 		for (let j = 0; j < 12; j++) {
 			if (array[pos[0]][j] === value) {
@@ -52,7 +52,7 @@ function App() {
 		}
 		return true;
 	}
-
+*/
 	// sort an array randomly
 	function shuffle(array: Array<string>) {
 		let currentIndex = array.length, randomIndex;
@@ -120,7 +120,7 @@ function App() {
 		field.forEach(element => {
 			element.textContent = matrix[i][j]
 			j++
-			if (j == 12) {
+			if (j === 12) {
 				j = 0
 				i++
 			}
